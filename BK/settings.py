@@ -10,13 +10,13 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'bk_parser.apps.BkParserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bk_parser.apps.BkParserConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +78,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'ru-RU'
+
+AUTH_USER_MODEL = 'bk_parser.BKUser'
 
 TIME_ZONE = 'Europe/Moscow'
 
