@@ -5,5 +5,9 @@
 {% endblock%}
 
 {% block body %}
+{% if user.is_authenticated %}
+<h1>{{ user.name }} {{user.last_name}}</h1>
+<h2>{{ user.username }}</h2>
+{% endif %}
 <p>ASIAN</p>
 {% endblock%}
