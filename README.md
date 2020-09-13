@@ -1,5 +1,7 @@
 Скачать и установить (при установке введите пароль 999bk):
+
 https://www.postgresql.org/download/ - БД
+
 https://www.python.org/downloads/release/python-378/ - python 3.7.8
 
 
