@@ -1,6 +1,12 @@
 Скачать и установить (при установке введите пароль 999bk):
-https://www.postgresql.org/download/
+https://www.postgresql.org/download/ - БД
+https://www.python.org/downloads/release/python-378/ - python 3.7.8
 
+
+1) в cmd прописать следующее:
+2) pip install Django
+3) pip install postgres
+=========
 1) Найти через меню-пуск "SQL Shell (psql)"
 2) использовать настройки по умолчанию (4 раза нажать Enter), после ввести пароль 999bk.
 3) postgres=# CREATE DATABASE bkdb; - создат дб bkdb, к которой подключится сайт
