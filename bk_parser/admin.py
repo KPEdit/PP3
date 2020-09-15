@@ -59,5 +59,22 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
+@admin.register(models.Sport)
+class SportAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.BetType)
+class BetTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.SureBet)
+class SureBetAdmin(admin.ModelAdmin):
+    pass
+
+
+
 admin.site.unregister(Group)
 admin.site.register(models.BKUser, UserAdmin)
+

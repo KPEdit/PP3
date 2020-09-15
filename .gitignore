@@ -1,2 +1,2 @@
-bk_parser/migrations/
+bk_parser/migrations/*
 db.sqlite3

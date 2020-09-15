@@ -1,9 +1,11 @@
 from django import forms
+import datetime
 from django.db import models
 from django.contrib.auth import models as umodels
 from django.conf import settings
 # from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password
+
 # Create your models here.
 
 
@@ -84,4 +86,42 @@ class BKUser(umodels.AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['name', 'last_name', 'email','password',]
 
+
+class Sport(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+class BetType(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+
+class SureBet(models.Model):
+    url = models.CharField(max_length=2048)
+    time = models.TimeField()
+    date = models.DateField(default=datetime.date.today)
+    t1 = models.CharField(max_length=64)
+    t2 = models.CharField(max_length=64)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+    k1 = models.FloatField()
+    k2 = models.FloatField()
+    bet_type = models.ForeignKey(BetType, on_delete=models.CASCADE)
+    is_as = models.BooleanField(default=False)
+    checked = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.sport.__str__().capitalize()} - {self.date} {self.time} | {self.t1}:{self.k1} - {self.t2}:{self.k2}"
+
+    def __repr__(self):
+        return f"{self.sport.__str__().capitalize()} - {self.date} {self.time} | {self.t1}:{self.k1} - {self.t2}:{self.k2}"
 
