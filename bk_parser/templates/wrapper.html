@@ -7,6 +7,10 @@
     {%block title%}{%endblock%}
 </head>
 <body>
+{%if user.is_authenticated%}
+{{user.balance}}
+{% endif %}
+
 {%block body%}{%endblock%}
 </body>
 </html>
