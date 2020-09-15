@@ -4,7 +4,7 @@ from . import models
 
 
 class PasswordField(forms.CharField):
-    def __init__(self, max_length=256, min_length=8, *args, **kwargs):
+    def __init__(self, max_length=256, min_length=5, *args, **kwargs):
         super(PasswordField, self).__init__(
             max_length=max_length,
             min_length=min_length,
