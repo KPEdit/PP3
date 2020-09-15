@@ -1,4 +1,4 @@
-{% include 'bk_parser/wrapper.html' %}
+{% include 'wrapper.html' %}
 
 {% block title %}
 <TITLE>MMMMMM TITLE</TITLE>
@@ -6,6 +6,8 @@
 
 {% block body %}
 {% if user.is_authenticated %}
+<h2>{{user.email}}</h2>
+<h3>{{user.password}}</h3>
 <h1>{{ user.name }} {{user.last_name}}</h1>
 <h2>{{ user.username }}</h2>
 {% endif %}

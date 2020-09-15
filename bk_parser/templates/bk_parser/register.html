@@ -1,0 +1,29 @@
+{% include 'wrapper.html' %}
+
+{% block title %}
+<TITLE>MMMMMM TITLE</TITLE>
+{% endblock%}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<h2>Пользователь уже авторизован</h2>
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    {% for item in userform %}
+    <div><span>{{item.name}}</span>{{item}}</div>
+    {% endfor %}
+    <button type="submit" value="Send" name="send">Send</button>
+</form>
+
+{% if unlog %}
+<h3>user logout</h3>
+{% else %}
+<h3>Not a user</h3>
+{% endif %}
+
+{% endif %}
+<p>ASIAN</p>
+{% endblock%}

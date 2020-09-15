@@ -1,0 +1,25 @@
+{% include 'wrapper.html' %}
+
+{% block title %}
+<TITLE>login page</TITLE>
+{% endblock%}
+
+{% block body %}
+{% if success_reg %}
+<h1 style="color:#4f4">user has been registered!</h1>
+{% endif %}
+
+{% if user.is_authenticated %}
+
+<h2>Пользователь уже авторизован</h2>
+{% else %}
+
+<form method="post">
+    {% csrf_token %}
+    {% for item in userform %}
+    {{item}}
+    {% endfor %}
+</form>
+{% endif %}
+<p>ASIAN</p>
+{% endblock%}
