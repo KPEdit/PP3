@@ -1,0 +1,32 @@
+{% include 'wrapper.html' %}
+
+{% block title %}
+<title>MMMMMM TITLE</title>
+{% endblock%}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="table" style="display:flex; flex-direction:column">
+{% for tr in statistics %}
+    <div class="table-raw" style="display:inline-flex">
+
+        <div class="t1">{{tr.t1}}</div>
+        <div class="t2">{{tr.t2}}</div>
+        <div class="k1">{{tr.k1}}</div>
+        <div class="k2">{{tr.k2}}</div>
+        <div class="is_as">{{tr.is_as}}</div>
+        <div class="checked">{{tr.checked}}</div>
+        <div class="time">{{tr.time}}</div>
+        <div class="date">{{tr.date}}</div>
+        <div class="arbit-surbets">
+            {% for as in tr.arbit_surbets.all %}
+                <div class="urls">{{as.url}}</div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+<p>ASIAN</p>
+{% endblock%}

@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from bk_parser import views
 
 urlpatterns = [
+    path('', views.index),
     path('admin/', admin.site.urls),
     path('user/', include('bk_parser.urls')),
+    path('statistics/', views.statistics)
 ]

@@ -1,14 +1,16 @@
 {%load static %}
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+    {%block title%}{%endblock%}
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'bk_parser/css/main.css'%}">
-    {%block title%}{%endblock%}
 </head>
+
 <body>
 {%if user.is_authenticated%}
-{{user.balance}}
+<p>{{user.balance|floatformat:2}}</p>
 {% endif %}
 
 {%block body%}{%endblock%}

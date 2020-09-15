@@ -5,8 +5,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1onz&1w1u#-k=b&8p5-9r#58vxik!orzm&5qe90+@)w5#zf9+q'
 
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost:8000',
+    'localhost',
+    '.localhost',
+    '127.0.0.1',
+    '[::1]',
+
+]
 
 
 INSTALLED_APPS = [

@@ -1,9 +1,8 @@
-from django import forms
 import datetime
 from django.db import models
+from django import db
 from django.contrib.auth import models as umodels
 from django.conf import settings
-# from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password
 
 # Create your models here.
@@ -20,8 +19,14 @@ class BKUserManager(umodels.BaseUserManager):
         )
 
         user.set_password(password)
-        user.save(using=self._db)
+        user.save(
+            using=self._db,
+            force_insert=True,
+            # force_update=True
+        )
+        # db.reset_queries()
         return user
+        # return None
 
     def create_superuser(self, password, username, name, last_name, email):
         user = self.create_user(
@@ -31,10 +36,25 @@ class BKUserManager(umodels.BaseUserManager):
             last_name=last_name,
             email=email
         )
+        if user is None:
+            return None
         user.is_superuser = True
         user.is_admin = True
         user.save(using=self._db)
         return user
+
+    def add_to_balance(self, amount, pk):
+        balance = self.filter(pk=pk).values('balance')
+        # print(balance, type(balance))
+        new_balance = balance[0]['balance'] + amount
+        balance.update(balance=new_balance)
+
+    def sub_to_balance(self, amount, pk):
+        balance = self.filter(pk=pk).values('balance')
+        # print(balance, type(balance))
+        new_balance = balance[0]['balance'] - amount
+        if new_balance >= 0:
+            balance.update(balance=new_balance)
 
 
 class BKUser(umodels.AbstractBaseUser):
@@ -96,6 +116,7 @@ class Sport(models.Model):
     def __repr__(self):
         return self.name
 
+
 class BetType(models.Model):
     name = models.CharField(max_length=256)
 
@@ -116,8 +137,9 @@ class SureBet(models.Model):
     k1 = models.FloatField()
     k2 = models.FloatField()
     bet_type = models.ForeignKey(BetType, on_delete=models.CASCADE)
-    is_as = models.BooleanField(default=False)
-    checked = models.BooleanField(default=False)
+    is_as = models.BooleanField(default=False, verbose_name=r"Вилка")
+    checked = models.BooleanField(default=False, verbose_name=r"Проверена на вилку")
+    arbit_surbets = models.ManyToManyField(r"SureBet")
 
     def __str__(self):
         return f"{self.sport.__str__().capitalize()} - {self.date} {self.time} | {self.t1}:{self.k1} - {self.t2}:{self.k2}"

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from . import forms
+from . import models
 
 # Create your views here.
 
@@ -54,6 +55,17 @@ def login_view(request):
 
 def logout_view(request):
     if request.user.is_authenticated:
+        # models.BKUser.objects.add_to_balance(20.555, request.user.pk)
+        models.BKUser.objects.sub_to_balance(40.00, request.user.pk)
         logout(request)
         return redirect('/user/register', {'unlog':True})
     return redirect('/user/register', {'unlog':False})
+
+
+def statistics(request, ck=0):
+    templates = dict()
+    RAW_NUM = 30
+    templates['statistics'] = models.SureBet.objects.order_by(
+        'is_as', 'checked')[ck*RAW_NUM:(ck+1)*RAW_NUM]
+    print(templates['statistics'][0].arbit_surbets.all())
+    return render(request, 'bk_parser/statistic.html', context=templates)
