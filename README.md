@@ -10,6 +10,17 @@ https://www.python.org/downloads/release/python-378/ - python 3.7.8
 3) pip install postgres
 
 =========
+(Альтернатива для быстрого начала работы с сайтом)Чтоб не париться с установкой PostgreSQL можно изменить сделать слеующее:
+1) в файле BK/BK/settings.py изменить переменную DATABASE на (в settings.py уже есть данная строчка, остается только ее раскоментить):
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+(основной вариант)
 1) Найти через меню-пуск "SQL Shell (psql)"
 2) использовать настройки по умолчанию (4 раза нажать Enter), после ввести пароль 999bk.
 3) postgres=# CREATE DATABASE bkdb; - создат дб bkdb, к которой подключится сайт
