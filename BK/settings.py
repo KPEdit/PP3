@@ -105,3 +105,9 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+# #Celery
+# BROKER_URL = "redis://127.0.0.1:6379/"
+# BROKER_TRANSPORT = "redis"
+# CELERY_RESULT_BACKEND = 'db+postgresql://postgres:999bk@127.0.0.1:5432/bkdb'
+
