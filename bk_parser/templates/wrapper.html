@@ -10,7 +10,7 @@
 
 <body>
 {%if user.is_authenticated%}
-<p>{{user.balance|floatformat:2}}</p>
+<p><span>Баланс: </span>{{user.balance|floatformat:2}}</p>
 {% endif %}
 
 {%block body%}{%endblock%}
